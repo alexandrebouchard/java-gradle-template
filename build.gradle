@@ -29,14 +29,14 @@ repositories {
 }
 
 dependencies {
-  compile group: 'com.google.guava', name: 'guava', version: '16.0.1'
-  testCompile group: 'junit', name: 'junit', version: '4.11'
-  compile group: 'junit', name: 'junit', version: '4.11'
+  compile group: 'com.google.guava', name: 'guava', version: '18.0'
+  testCompile group: 'junit', name: 'junit', version: '4.12'
+  compile group: 'junit', name: 'junit', version: '4.12'
   compile group: 'ca.ubc.stat', name: 'tutorialj', version: '2.0.2'
-  compile group: 'ca.ubc.stat', name: 'binc', version: '1.2.0'
-  compile group: 'ca.ubc.stat', name: 'briefj', version: '2.3.0'
-  compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.3'
-  compile 'com.google.code.gson:gson:2.2.4'
+  compile group: 'ca.ubc.stat', name: 'binc', version: '1.2.1'
+  compile group: 'ca.ubc.stat', name: 'briefj', version: '2.4.7'
+  compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.3.2'
+  compile 'com.google.code.gson:gson:2.3.1'
 }
 
 task(tutorialj, dependsOn: ['build','testClasses'], type: JavaExec) {
@@ -77,6 +77,18 @@ buildscript {
     classpath 'com.github.ben-manes:gradle-versions-plugin:0.5-beta-1'
   }
 }
+
+if (JavaVersion.current().isJava8Compatible()) {
+    allprojects {
+        //noinspection SpellCheckingInspection
+        tasks.withType(Javadoc) {
+            // disable the crazy super-strict doclint tool in Java 8
+            //noinspection SpellCheckingInspection
+            options.addStringOption('Xdoclint:none', '-quiet')
+        }
+    }
+}
+
 
 // http://www.gradle.org/docs/current/userguide/application_plugin.html
 // use 'gradle startScripts' to create script
