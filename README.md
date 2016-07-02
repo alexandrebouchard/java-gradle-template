@@ -1,38 +1,57 @@
-Description
------------
+Summary
+-------
 
-A simple template and script to create java projects built with gradle.
+<!-- [![Build Status](https://travis-ci.org/alexandrebouchard/PROJECTNAME.png?branch=master)](https://travis-ci.org/alexandrebouchard/PROJECTNAME) -->
+
+PROJECTNAME is ...
+
+PROJECTNAME stands for ...
 
 
 Installation
 ------------
 
-Make the script ``create-java-project`` available in your PATH. Make sure ``git`` and ``gradle`` are in your PATH as well.
+
+There are several options available to install the package:
+
+### Integrate to a gradle script
+
+Simply add the following lines (replacing 1.0.0 by the current version (see git tags)):
+
+```groovy
+repositories {
+ mavenCentral()
+ jcenter()
+ maven {
+    url "http://www.stat.ubc.ca/~bouchard/maven/"
+  }
+}
+
+dependencies {
+  compile group: 'ca.ubc.stat', name: 'PROJECTNAME', version: '1.0.0'
+}
+```
+
+### Compile using the provided gradle script
+
+- Check out the source ``git clone git@github.com:alexandrebouchard/PROJECTNAME.git``
+- Compile using ``./gradlew installDist``
+- Add the jars in ``build/install/PROJECTNAME/lib/`` into your classpath
+
+### Use in eclipse
+
+- Check out the source ``git clone git@github.com:alexandrebouchard/PROJECTNAME.git``
+- Type ``gradle eclipse`` from the root of the repository
+- From eclipse:
+  - ``Import`` in ``File`` menu
+  - ``Import existing projects into workspace``
+  - Select the root
+  - Deselect ``Copy projects into workspace`` to avoid having duplicates
 
 
 Usage
 -----
 
-Type ``create-java-project [project-name]`` where [project-name] is the name you want to give to your project (no space allowed). For example, ``create-java-project hello-world``
+### Quick start
 
-This will:
-- copy skeleton files
-- substitute the string PROJECTNAME to the project name both inside files and in the name of files/folders
-- setup a git repository and submodules for frequently modified libs
-- run ``gradle eclipse`` to prepare the folder to be imported by eclipse
-- create a script (name upon the project name) to run the java program
-
-Then from eclipse:
-- ``Import`` in ``File`` menu
-- ``Import existing projects into workspace``
-- Select the root of the newly created repo
-- Deselect ``Copy projects into workspace`` to avoid having duplicates
-
-Finally, type ``gradle tutorialj`` from the root of the repository to create a basic
-``README.md`` with further instructions.
-
-
-Customization
--------------
-
-Fork this repository and change the string ``alexandrebouchard`` in ``create-java-project`` to your github user.
+...

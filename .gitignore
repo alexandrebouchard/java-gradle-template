@@ -2,6 +2,5 @@
 .gradle
 .classpath
 .project
-bin
-bin/PROJECTNAME
-bin/PROJECTNAME/Main.class
+bin/
+.DS_Store
