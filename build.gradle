@@ -1,6 +1,36 @@
 apply plugin: 'java'
 apply plugin: 'maven'
 apply plugin: 'eclipse'
+apply plugin: "org.xtext.xtend"
+
+buildscript {
+  repositories {
+    maven { url "https://github.com/ben-manes/gradle-versions-plugin/raw/mvnrepo" }
+    mavenCentral()
+  }
+
+  dependencies {
+    classpath 'com.github.ben-manes:gradle-versions-plugin:0.5-beta-1'
+  }
+}
+
+buildscript {
+  repositories {
+    maven {
+      url "https://plugins.gradle.org/m2/"
+    }
+  }
+  dependencies {
+    classpath "org.xtext:xtext-gradle-plugin:1.0.5"
+  }
+}
+
+xtend {
+  generator{
+    javaSourceLevel = 1.8
+  }
+}
+
 
 uploadArchives {
   repositories.mavenDeployer {
@@ -29,14 +59,13 @@ repositories {
 }
 
 dependencies {
-  compile group: 'com.google.guava', name: 'guava', version: '18.0'
+  compile group: 'com.google.guava', name: 'guava', version: '19.0'
   testCompile group: 'junit', name: 'junit', version: '4.12'
   compile group: 'junit', name: 'junit', version: '4.12'
-  compile group: 'ca.ubc.stat', name: 'tutorialj', version: '2.0.2'
   compile group: 'ca.ubc.stat', name: 'binc', version: '1.2.1'
-  compile group: 'ca.ubc.stat', name: 'briefj', version: '2.4.7'
-  compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.3.2'
-  compile 'com.google.code.gson:gson:2.3.1'
+  compile group: 'ca.ubc.stat', name: 'briefj', version: '2.4.15'
+  compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.4'
+  compile 'com.google.code.gson:gson:2.7'
 }
 
 task(tutorialj, dependsOn: ['build','testClasses'], type: JavaExec) {
@@ -67,16 +96,7 @@ artifacts {
 }
 
 
-buildscript {
-  repositories {
-    maven { url "https://github.com/ben-manes/gradle-versions-plugin/raw/mvnrepo" }
-    mavenCentral()
-  }
 
-  dependencies {
-    classpath 'com.github.ben-manes:gradle-versions-plugin:0.5-beta-1'
-  }
-}
 
 if (JavaVersion.current().isJava8Compatible()) {
     allprojects {
