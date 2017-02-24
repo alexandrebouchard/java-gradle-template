@@ -34,7 +34,7 @@ xtend {
 
 uploadArchives {
   repositories.mavenDeployer {
-    repository(url: "file:///Users/bouchard/Documents/web/public_html/maven/")
+    repository(url: "file:///${System.properties['user.home']}/artifacts/")
     pom.version = "1.0.0"
     pom.artifactId = "PROJECTNAME"
     pom.groupId = "ca.ubc.stat"
@@ -51,10 +51,10 @@ repositories {
   mavenCentral()
   jcenter()
   maven {
-    url "file:///Users/bouchard/Documents/web/public_html/maven/"
+    url "https://ubc-stat-ml.github.io/artifacts/"
   }
   maven {
-    url "http://www.stat.ubc.ca/~bouchard/maven/"
+    url "https://www.stat.ubc.ca/~bouchard/maven/"
   }
 }
 
@@ -66,6 +66,7 @@ dependencies {
   compile group: 'ca.ubc.stat', name: 'briefj', version: '2.4.15'
   compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.4'
   compile 'com.google.code.gson:gson:2.7'
+  compile 'org.eclipse.xtend:org.eclipse.xtend.lib:2.9.2'
 }
 
 task(tutorialj, dependsOn: ['build','testClasses'], type: JavaExec) {
