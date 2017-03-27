@@ -14,6 +14,12 @@ Installation
 
 There are several options available to install the package:
 
+### From the command line
+
+- Check out the source ``git clone git@github.com:alexandrebouchard/PROJECTNAME.git``
+- Compile using ``./gradlew installDist``
+- Add the directory ``build/install/PROJECTNAME/bin`` to your ``$PATH`` variable.
+
 ### Integrate to a gradle script
 
 Simply add the following lines (replacing 1.0.0 by the current version (see git tags)):
@@ -23,7 +29,7 @@ repositories {
  mavenCentral()
  jcenter()
  maven {
-    url "http://www.stat.ubc.ca/~bouchard/maven/"
+    url "https://www.stat.ubc.ca/~bouchard/maven/"
   }
 }
 
@@ -41,7 +47,7 @@ dependencies {
 ### Use in eclipse
 
 - Check out the source ``git clone git@github.com:alexandrebouchard/PROJECTNAME.git``
-- Type ``gradle eclipse`` from the root of the repository
+- Type ``./gradlew eclipse`` from the root of the repository
 - From eclipse:
   - ``Import`` in ``File`` menu
   - ``Import existing projects into workspace``
