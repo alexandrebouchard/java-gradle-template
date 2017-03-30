@@ -69,14 +69,6 @@ dependencies {
   compile 'org.eclipse.xtend:org.eclipse.xtend.lib:2.9.2'
 }
 
-task(tutorialj, dependsOn: ['build','testClasses'], type: JavaExec) {
-  main = 'tutorialj.Main'
-  classpath {
-    configurations.compile
-    sourceSets.main.runtimeClasspath
-    sourceSets.test.runtimeClasspath
-  }
-}
 
 apply plugin: 'versions'
 
@@ -115,7 +107,13 @@ if (JavaVersion.current().isJava8Compatible()) {
 // use 'gradle startScripts' to create script
 // use 'gradle distZip' to create deployable zip
 // use 'gradle installApp' to copy it somewhere
-apply plugin:'application'  
+apply plugin:'application' 
+
+// Make sure maven archives don't get large
+configurations.archives.with {
+    artifacts.remove artifacts.find { it.archiveTask.is distZip }
+    artifacts.remove artifacts.find { it.archiveTask.is distTar }
+}  
 
 // Creates scripts for entry points
 // Subproject must apply application plugin to be able to call this method.
